@@ -23,6 +23,7 @@ if [ -z "$VICEROYARCH" ]; then
     armel) VICEROYARCH=arm                ;;
     armhf) VICEROYARCH=arm   VICEROYARM=7 ;;
     arm64) VICEROYARCH=arm64              ;;
+    riscv64) VICEROYARCH=riscv64          ;;
     *)
       echo "fatal: unrecognized host architecture $HOSTARCH" >&2
       exit 1

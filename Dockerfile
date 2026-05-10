@@ -7,6 +7,7 @@ RUN  export HOST=$(dpkg --print-architecture) \
   && dpkg --add-architecture armhf    \
   && dpkg --add-architecture arm64    \
   && dpkg --add-architecture ppc64el  \
+  && dpkg --add-architecture riscv64  \
   && dpkg --add-architecture s390x    \
   && apt-get update                   \
   && apt-get install -yq              \
@@ -19,6 +20,7 @@ RUN  export HOST=$(dpkg --print-architecture) \
         crossbuild-essential-armhf    \
         crossbuild-essential-arm64    \
         crossbuild-essential-ppc64el  \
+        crossbuild-essential-riscv64  \
         crossbuild-essential-s390x    \
         libssl-dev                    \
         openssl                       \
