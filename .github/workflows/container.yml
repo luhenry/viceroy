@@ -12,6 +12,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - 'claude/add-riscv64-image-oOGMe'
 jobs:
   build_amd64:
     name: Build AMD64 Container
