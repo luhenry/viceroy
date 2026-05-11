@@ -106,27 +106,11 @@ RUN  export HOST=$(dpkg --print-architecture) \
         zlib1g-dev:$HOST  \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ARG OSXCROSS_SDK_URL
-ENV OSXCROSS_REV=50e86ebca7d14372febd0af8cd098705049161b9 \
-    OSXCROSS_SDK_NAME=MacOSX12.3.sdk.tar.xz
-
-ADD ${OSXCROSS_SDK_URL} /tmp/${OSXCROSS_SDK_NAME}
-
-RUN  mkdir -p /tmp/osxcross && cd /tmp/osxcross                                           \
-  && curl -sSL "https://codeload.github.com/tpoechtrager/osxcross/tar.gz/${OSXCROSS_REV}" \
-      | tar -C /tmp/osxcross --strip=1 -xzf -                                             \
-  && mv /tmp/${OSXCROSS_SDK_NAME} tarballs/${OSXCROSS_SDK_NAME}                           \
-  && UNATTENDED=yes ./build.sh                                                            \
-  && mv target /usr/osxcross
-
 FROM environment
 
 COPY --from=freebsd  /usr/freebsd  /usr/freebsd
-COPY --from=osxcross /usr/osxcross /usr/osxcross
-ENV PATH /usr/osxcross/bin:$PATH
 
 COPY rootfs/viceroycc         /usr/bin/viceroycc
-COPY rootfs/viceroycc-darwin  /usr/bin/viceroycc-darwin
 COPY rootfs/viceroycc-freebsd /usr/bin/viceroycc-freebsd
 COPY rootfs/viceroycc-linux   /usr/bin/viceroycc-linux
 COPY rootfs/viceroycc-windows /usr/bin/viceroycc-windows
