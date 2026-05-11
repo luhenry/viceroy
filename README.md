@@ -33,6 +33,7 @@ The following target platforms are currently supported:
 | arm64    |     x |      x |       x |         |
 | ppc64le  |     x |        |         |         |
 | s390x    |     x |        |         |         |
+| riscv64  |     x |        |         |         |
 
 ## Usage
 

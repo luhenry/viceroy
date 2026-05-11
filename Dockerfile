@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as environment
+FROM debian:trixie-slim as environment
 
 RUN  export HOST=$(dpkg --print-architecture) \
   && dpkg --add-architecture amd64    \
@@ -8,6 +8,7 @@ RUN  export HOST=$(dpkg --print-architecture) \
   && dpkg --add-architecture arm64    \
   && dpkg --add-architecture ppc64el  \
   && dpkg --add-architecture s390x    \
+  && dpkg --add-architecture riscv64  \
   && apt-get update                   \
   && apt-get install -yq              \
         clang:$HOST                   \
@@ -20,6 +21,7 @@ RUN  export HOST=$(dpkg --print-architecture) \
         crossbuild-essential-arm64    \
         crossbuild-essential-ppc64el  \
         crossbuild-essential-s390x    \
+        crossbuild-essential-riscv64  \
         libssl-dev                    \
         openssl                       \
         mingw-w64:$HOST               \
